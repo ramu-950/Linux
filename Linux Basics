@@ -19,3 +19,28 @@ Process Management & System Monitoring
 • kill -9 <PID> 	— Forcefully terminates a malfunctioning or hung process using its Process ID.
 • df -h 		— Displays disk space usage in a human-readable format.
 • free -h 		— Displays system memory (RAM) usage.
+
+Linux Filesystem Hierarchy
+• / (Root) — The starting point of the entire directory tree.
+• /etc — Configuration files for the system and applications (e.g., Nginx, SSH).
+• /var/log — System and application logs; the primary destination for debugging.
+• /home — Personal directories for regular users to store data and scripts.
+• /root — The isolated home directory reserved for the administrator (root) user.
+• /bin & /sbin — Essential system commands and binaries needed to run the OS.
+• /opt — Third-party, optional software packages (e.g., GitLab, custom tools).
+• /tmp — Temporary files that are automatically cleared upon system reboot.
+• /proc & /sys — Virtual directories exposing kernel and process hardware data in real time.
+
+Package Manager
+A Package Manager is an automated tool that installs, updates, configures, and removes software on a Linux system.
+Common Package Managers by Linux Family
+Linux Distribution Family				High-Level Manager	Low-Level Tool	Package Format
+Debian / Ubuntu / Mint					apt or apt-get		dpkg		.deb
+RHEL / CentOS / Rocky Linux / Fedora			dnf or yum		rpm		.rpm
+Alpine Linux (Popular for tiny Docker containers)	apk			apk		.apk
+
+Essential Commands
+• Update package list: 	sudo apt update  
+• Install software: 	sudo apt install docker.io
+• Upgrade installed 	apps: sudo apt upgrade
+• Remove software: 	sudo apt remove nginx
