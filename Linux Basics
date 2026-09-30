@@ -44,3 +44,52 @@ Essential Commands
 • Install software: 	sudo apt install docker.io
 • Upgrade installed 	apps: sudo apt upgrade
 • Remove software: 	sudo apt remove nginx
+
+Navigation Commands
+• pwd (Print Working Directory) — Displays the absolute path of the directory you are currently in.
+• ls (List) — Lists directory contents. Use ls -la to show detailed properties (permissions, size, owner) and hidden files.
+• cd (Change Directory) — Switches your current workspace to a new folder path.
+
+File & Directory Management Commands
+• mkdir (Make Directory) — Creates a new folder. Use mkdir -p to create a full nested path all at once.
+• touch — Creates an empty file or updates the timestamp of an existing one.
+• cp (Copy) — Copies files or directories. Use cp -r to copy folders recursively.
+• mv (Move) — Moves or renames files and folders.
+• rm (Remove) — Deletes files or directories. Use rm -rf to forcefully delete folders and everything inside them.
+
+Real-World DevOps Example Workflow
+Imagine you need to create a deployment directory for a web app, configure a backup, and clean up temporary files on a remote server.
+bash
+
+# 1. Check where you are currently located on the server
+pwd
+# Output: /home/ubuntu
+
+# 2. Create a nested project structure for a new application deployment
+mkdir -p myapp/config
+
+# 3. Move into the newly created configuration directory
+cd myapp/config
+
+# 4. Create an empty environment configuration file
+touch .env
+
+# 5. List all files in the directory to verify the hidden .env file exists
+ls -la
+# Output: Shows permissions, owner, and the file '.env'
+
+# 6. Go back up one directory level to the 'myapp' root folder
+cd ..
+
+# 7. Create a backup copy of the entire config folder before making changes
+cp -r config config_backup
+
+# 8. Rename the backup folder to include the word 'old'
+mv config_backup config_old
+
+# 9. Clean up and delete the old backup folder forcefully
+rm -rf config_old
+
+DevOps Pro-Tips
+• Tab Completion: Press the Tab key while typing a file or folder name. Linux will automatically finish typing it for you, saving time and preventing typos.
+• The Tilde (~): Typing cd ~ or just cd instantly takes you back to your user's home directory (/home/username), no matter how deep you are in the filesystem hierarchy.
