@@ -1,4 +1,4 @@
-Service Management (Systemd)
+**Service Management (Systemd)**
 • systemctl start <service> 	— Starts a background service.
 • systemctl stop <service> 	— Stops a running service.
 • systemctl restart <service> 	— Restarts a service (commonly used after changing a config file).
