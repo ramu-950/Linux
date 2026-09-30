@@ -57,7 +57,7 @@ File & Directory Management Commands
 • mv (Move) — Moves or renames files and folders.
 • rm (Remove) — Deletes files or directories. Use rm -rf to forcefully delete folders and everything inside them.
 
-Real-World DevOps Example Workflow
+Real-World Example
 Imagine you need to create a deployment directory for a web app, configure a backup, and clean up temporary files on a remote server.
 bash
 
@@ -90,6 +90,6 @@ mv config_backup config_old
 # 9. Clean up and delete the old backup folder forcefully
 rm -rf config_old
 
-DevOps Pro-Tips
+Tips
 • Tab Completion: Press the Tab key while typing a file or folder name. Linux will automatically finish typing it for you, saving time and preventing typos.
 • The Tilde (~): Typing cd ~ or just cd instantly takes you back to your user's home directory (/home/username), no matter how deep you are in the filesystem hierarchy.
