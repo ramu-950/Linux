@@ -93,3 +93,51 @@ rm -rf config_old
 Tips
 • Tab Completion: Press the Tab key while typing a file or folder name. Linux will automatically finish typing it for you, saving time and preventing typos.
 • The Tilde (~): Typing cd ~ or just cd instantly takes you back to your user's home directory (/home/username), no matter how deep you are in the filesystem hierarchy.
+
+
+Linux Basics
+============
+
+Linux disk management commands
+
+1. Information gathering & monitoring
+
+Before making any changes, you must identify your drives (e.g., /dev/sda, /dev/nvme0n1) and check their current status.
+• lsblk 	– Lists all block devices (disks and partitions) in a clean, tree-like layout.
+• lsblk -f 	– Displays filesystems (ext4, xfs, etc.) and UUIDs alongside the block devices.
+• sudo fdisk -l – Lists all connected disks, their capacities, and exact partition boundaries.
+• df -h 	– Displays total, used, and available disk space for all mounted filesystems in a human-readable format (GB/MB).
+• du -sh /path/to/dir – Shows the total disk space utilized by a specific directory and its contents.
+• sudo blkid 	– Displays the unique UUID and attributes of all available block attributes.
+
+2. Disk Partitioning Tools
+
+Partitioning splits a physical disk into logical segments.
+• sudo fdisk /dev/sdX 	– Launches an interactive, text-menu utility optimal for smaller drives or older MBR partitioning schemes.
+• Inside fdisk: p (print table), n (new partition), d (delete), w (write changes and exit).
+• sudo gdisk /dev/sdX 	– The equivalent of fdisk, but specifically designed for modern, large-capacity GPT drives.
+• sudo parted /dev/sdX 	– A powerful tool that handles both MBR and GPT, commonly used for scripting or managing huge storage pools.
+• sudo cfdisk /dev/sdX 	– A user-friendly, interactive curses-based text interface that lets you easily manage partitions using keyboard arrow keys.
+• sudo partprobe 	– Informs the Linux kernel of recent partition table adjustments without forcing a system reboot.
+
+3. Creating Filesystems (Formatting)
+
+Once a partition is created (e.g., /dev/sdX1), it must be formatted with a filesystem so the operating system can write data to it.
+• sudo mkfs.ext4 /dev/sdX1 	– Formats the target partition with the Ext4 filesystem, standard for most Linux distributions.
+• sudo mkfs.xfs /dev/sdX1 	– Formats the target partition with XFS, which excels at high-performance enterprise workloads and very large files.
+• sudo mkfs.vfat /dev/sdX1 	– Formats the drive to FAT32, useful if the drive needs to be read natively by both Windows and Linux systems.
+
+4. Mounting & Unmounting Filesystems
+
+Linux maps storage devices directly into the unified directory tree rather than assigning drive letters.
+• sudo mount /dev/sdX1 /mnt/target_folder – Attaches the partition filesystem to an existing directory, making its contents accessible.
+• sudo umount /dev/sdX1 (or /mnt/target_folder) – Safely detaches the partition. Note: Ensure no applications are reading/writing to the folder while unmounting.
+• sudo mount -a – Instantly mounts all filesystems specified in the system config file (/etc/fstab). Used heavily to test manual configurations.
+Tip for Permanent Mounts: To keep a drive mounted after a reboot, you must add its configuration line to the /etc/fstab file using its UUID.
+
+5. Disk Maintenance, Health, & Diagnostics
+
+• sudo fsck /dev/sdX1 – Checks and repairs a disconnected or unmounted filesystem for errors.
+• sudo smartctl -a /dev/sdX – Performs a comprehensive SMART health check on physical drives to look for failing sectors or hardware issues.
+• sudo badblocks -v /dev/sdX – Scans a hard disk thoroughly to search for unusable physical bad blocks.
+Are you setting up a brand-new physical hard drive/SSD, formatting an external USB drive, or expanding a storage volume on a virtual machine (cloud instance)? I can provide you with the exact line-by-line commands tailored to your specific setup.
